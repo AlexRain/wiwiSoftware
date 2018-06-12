@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'Cloginui.ui'
 **
-** Created by: Qt User Interface Compiler version 5.8.0
+** Created by: Qt User Interface Compiler version 5.7.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -84,6 +84,7 @@ public:
         pushButton_cloese->setMinimumSize(QSize(13, 13));
         pushButton_cloese->setMaximumSize(QSize(13, 13));
         pushButton_cloese->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_cloese->setFocusPolicy(Qt::NoFocus);
 
         horizontalLayout->addWidget(pushButton_cloese);
 

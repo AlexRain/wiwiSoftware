@@ -1,28 +1,35 @@
 #include "Cloginui.h"
-#include "..\tool\commmon.h"
+#include "commmon.h"
 #include <QMouseEvent>
 #include <QDesktopServices>
+#include "CustEvent.h"
+#include "EventManager.h"
 
 Cloginui::Cloginui(QWidget *parent)
-	: QWidget(parent)
+	: QDialog(parent)
 {
 	ui.setupUi(this);
-    this->setAttribute(Qt::WA_TranslucentBackground);
-    this->setAttribute(Qt::WA_DeleteOnClose);
-    this->setWindowFlags(Qt::FramelessWindowHint);
+	m_bCanMove = false;
+
+	event_helper.RegistWidgetAndFunc(eLoginUi, this);
+
+	this->setAttribute(Qt::WA_TranslucentBackground);
+    this->setWindowFlags(this->windowFlags() | Qt::FramelessWindowHint);
+
 	initUi();
 	initStyle();
+
 }
 
 Cloginui::~Cloginui()
 {
+	event_helper.UnRegist(eLoginUi);
 }
 
 void Cloginui::initUi()
 {
     ui.label_forget->installEventFilter(this);
-
-
+	this->setFocus();
 }
 
 void Cloginui::initStyle()
@@ -61,10 +68,70 @@ bool Cloginui::eventFilter(QObject *obj, QEvent *event)
 
 void Cloginui::on_pushButton_confirm_clicked()
 {
-
+	this->done(VERIFY_SUCC);
 }
 
 void Cloginui::on_pushButton_cloese_clicked()
 {
     this->close();
+}
+
+void Cloginui::mouseMoveEvent(QMouseEvent *event)
+{
+	QDialog::mouseMoveEvent(event);
+	if (event->buttons().testFlag(Qt::LeftButton) && m_bCanMove)
+	{
+		QPoint posDes = event->globalPos() - m_dragPoint;
+		this->move(posDes);
+	}
+}
+
+void Cloginui::mousePressEvent(QMouseEvent *event)
+{
+	QDialog::mousePressEvent(event);
+	if (QRect(0, 0, this->width(), ui.widget_top->height()).contains(event->pos()))
+	{
+		m_bCanMove = true;
+		m_dragPoint = event->globalPos() - frameGeometry().topLeft();
+	}
+	else
+	{
+		m_bCanMove = false;
+	}
+}
+
+void Cloginui::mouseReleaseEvent(QMouseEvent *event)
+{
+	QDialog::mouseReleaseEvent(event);
+	m_bCanMove = false;
+}
+
+bool Cloginui::event(QEvent *event)
+{
+	if (CustomEventType == event->type())
+	{
+		CustEvent *e = static_cast<CustEvent*>(event);
+		if (NULL != e)
+		{
+			if ("updateUi" == e->funcName())
+			{
+				this->updateUi(e->value().toString());
+			}
+		}
+	}
+
+	return QDialog::event(event);
+}
+
+void Cloginui::updateUi(QString strText)
+{
+	ui.label_tilte->setText(strText);
+}
+
+void Cloginui::keyPressEvent(QKeyEvent *event)
+{
+	if (Qt::Key_Enter == event->key() || Qt::Key_Return == event->key())
+	{
+		on_pushButton_confirm_clicked();
+	}
 }

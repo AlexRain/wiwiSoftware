@@ -1,4 +1,5 @@
 <RCC>
-    <qresource prefix="mainui">
+    <qresource prefix="/mainui">
+        <file>logo.ico</file>
     </qresource>
 </RCC>

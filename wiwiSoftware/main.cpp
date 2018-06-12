@@ -1,11 +1,33 @@
 #include "mainui.h"
 #include <QtWidgets/QApplication>
 #include "Cloginui.h"
+#include "commmon.h"
+#include <QDesktopWidget>
 
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
-	Cloginui w;
-	w.show();
-	return a.exec();
+
+	int nExitCode = 0;
+	do 
+	{
+		Cloginui w;
+		if (VERIFY_SUCC != w.exec())
+		{
+			return 0;
+		}
+		
+		mainui mainWidget;
+		mainWidget.resize(1280,768);
+		QDesktopWidget obj;
+		QRect rect = obj.availableGeometry();
+		mainWidget.move((rect.width() - mainWidget.width()) / 2, (rect.height() - mainWidget.height()) / 2);
+		mainWidget.show();
+
+		nExitCode = a.exec();
+
+	} while (RESTART_CODE == nExitCode);
+
+	
+	return 0;
 }

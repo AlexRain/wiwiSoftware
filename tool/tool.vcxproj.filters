@@ -24,6 +24,16 @@
       <Extensions>moc;h;cpp</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{f67789ca-0707-4e99-b2f8-20c34e885818}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{5d838e55-b24b-41eb-89eb-08715a2239ae}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tool.cpp">
@@ -32,12 +42,18 @@
     <ClCompile Include="commmon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CustEvent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="commmon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CustEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

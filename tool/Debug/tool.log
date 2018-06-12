@@ -1,6 +1,9 @@
-﻿  commmon.cpp
-  tool.cpp
-  正在生成代码...
-    正在创建库 E:\workSpace\wiwiSoftware\Win32\Debug\tool.lib 和对象 E:\workSpace\wiwiSoftware\Win32\Debug\tool.exp
-  tool.vcxproj -> E:\workSpace\wiwiSoftware\Win32\Debug\tool.dll
-  tool.vcxproj -> E:\workSpace\wiwiSoftware\Win32\Debug\tool.pdb (Full PDB)
+﻿生成启动时间为 2018/6/12 16:28:20。
+     1>项目“E:\workspace\wiwiSoftware\tool\tool.vcxproj”在节点 2 上(Build 个目标)。
+     1>Link:
+         tool.vcxproj -> E:\workspace\wiwiSoftware\Win32\Debug\tool.dll
+     1>已完成生成项目“E:\workspace\wiwiSoftware\tool\tool.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:00.03
