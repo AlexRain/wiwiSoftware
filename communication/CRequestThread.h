@@ -4,6 +4,7 @@
 #include <QObject>
 #include "commmon.h"
 #include "CHttpManage.h"
+#include <QMutex>
 
 class CRequestThread : public QObject
 {
@@ -18,7 +19,6 @@ public slots:
 signals:
 	void GetDataCallback(int nCmd, int nWidget, QString strFuncName,QString strData);
 private:
-	QList<PARAM> m_listTask;
 	QMutex mutex;
 	CHttpManage m_httpClient;
 public:

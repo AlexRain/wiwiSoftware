@@ -1,4 +1,5 @@
 #include "TaskManager.h"
+#include <QMutexLocker>
 
 TaskManager::TaskManager()
 {

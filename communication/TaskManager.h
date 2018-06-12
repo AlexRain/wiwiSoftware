@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "commmon.h"
+#include <QMutex>
 
 class TaskManager
 {

@@ -2,6 +2,7 @@
 #include "TaskManager.h"
 #include <QThread>
 #include "CRequestThread.h"
+#include <QDebug>
 
 #define  MAX_THREADON_NUM  15
 
@@ -24,6 +25,7 @@ void CHttpThreadManager::getData(int nCmd, int nWidgetId, QString strFuncName, Q
 	param.strFuncName = strFuncName;
 	param.strWidgetId = nWidgetId;
 	param.strParam = strParam;
+
 	TaskManager::Instance().InsetTask(param);
 
 	if (m_nThreadCount < 2) //开启常驻线程
@@ -46,12 +48,12 @@ void CHttpThreadManager::getData(int nCmd, int nWidgetId, QString strFuncName, Q
 
 	if ((TaskManager::Instance().m_listTask.size() > 2) && (m_nThreadOn < MAX_THREADON_NUM)) //开启临时线程
 	{
-		QThread *pThread = new QThread;
+        QThread *pThread = new QThread;
 		CRequestThread *pObj = new CRequestThread;
 		pObj->m_bAlwaysOn = false;
 		pObj->moveToThread(pThread);
 		pThread->start();
-		m_nThreadCount++;
+        m_nThreadCount++;
 
 		connect(pObj, SIGNAL(GetDataCallback(int, int, QString, QString)),
 			this, SIGNAL(GetDataCallback(int, int, QString, QString)));
@@ -61,9 +63,12 @@ void CHttpThreadManager::getData(int nCmd, int nWidgetId, QString strFuncName, Q
 		connect(pThread, SIGNAL(finished()), pObj, SLOT(deleteLater()));
 		connect(pThread, SIGNAL(finished()), pThread, SLOT(deleteLater()));
 	}
+
+    qDebug() << QString::fromLocal8Bit("当前线程数量：") << m_nThreadCount;
 }
 
 void CHttpThreadManager::slot_threadFinish()
 {
 	m_nThreadCount--;
+    qDebug() << "One Thread Finished";
 }
