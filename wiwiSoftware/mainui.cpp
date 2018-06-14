@@ -21,8 +21,6 @@ mainui::~mainui()
 void mainui::updateText(QString strText)
 {
     qDebug() << "WebContent:" << strText;
-
-    ui.textBrowser->append(strText);
 }
 
 void mainui::on_pushButton_request_clicked()

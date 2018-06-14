@@ -12,6 +12,8 @@ public:
 
 	QString getData(int nCmd, QString param);
 
+	void initHttp(QUrl url);
+
 private:
 	
 };

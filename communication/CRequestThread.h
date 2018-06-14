@@ -19,7 +19,6 @@ signals:
 	void GetDataCallback(int nCmd, int nWidget, QString strFuncName,QString strData);
 private:
 	QMutex mutex_task;
-	QMutex mutex;
 	CHttpManage m_httpClient;
 public:
 	bool m_bAlwaysOn; //是否为常驻线程

@@ -17,7 +17,6 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -27,7 +26,7 @@ class Ui_mainuiClass
 {
 public:
     QVBoxLayout *verticalLayout;
-    QTextBrowser *textBrowser;
+    QWidget *widget;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer;
     QPushButton *pushButton_request;
@@ -41,10 +40,15 @@ public:
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        textBrowser = new QTextBrowser(mainuiClass);
-        textBrowser->setObjectName(QStringLiteral("textBrowser"));
+        widget = new QWidget(mainuiClass);
+        widget->setObjectName(QStringLiteral("widget"));
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(widget->sizePolicy().hasHeightForWidth());
+        widget->setSizePolicy(sizePolicy);
 
-        verticalLayout->addWidget(textBrowser);
+        verticalLayout->addWidget(widget);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);

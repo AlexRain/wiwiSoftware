@@ -25,6 +25,8 @@ QString CHttpManage::getData(int nCmd, QString param)
 	timer.setInterval(30000);  // 设置超时时间 30 秒
 	timer.setSingleShot(true);  // 单次触发
 
+	QTime timeUse;
+	timeUse.start();
 	// 请求 Qt 官网
 	QNetworkAccessManager manager;
 	QNetworkRequest request;
@@ -57,7 +59,6 @@ QString CHttpManage::getData(int nCmd, QString param)
 			int nStatusCode = variant.toInt();
 			// 根据状态码做进一步数据处理
 			QByteArray bytes = pReply->readAll();
-			qDebug() << "Status Code : " << nStatusCode;
 			strData = QString::fromUtf8(bytes);
 		}
 	}
@@ -66,8 +67,9 @@ QString CHttpManage::getData(int nCmd, QString param)
 		pReply->abort();
 		pReply->deleteLater();
 		strData = "Request Timeout!";
-		qDebug() << "Timeout";
+		qDebug() << "Http Timeout";
 	}
 
+	qWarning() << "Cmd:" << nCmd << TOCH("使用时间：") << timeUse.elapsed() << "ms";
 	return strData;
 }

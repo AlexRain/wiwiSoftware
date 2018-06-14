@@ -21,7 +21,6 @@ public:
 	}
 
 	void getData(int nCmd,int nWidgetId,QString strFuncName,QString strParam);
-
 private slots:
 	void slot_threadFinish();
 signals:
