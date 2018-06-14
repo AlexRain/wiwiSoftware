@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainui.ui'
 **
-** Created by: Qt User Interface Compiler version 5.8.0
+** Created by: Qt User Interface Compiler version 5.7.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -36,7 +36,7 @@ public:
     {
         if (mainuiClass->objectName().isEmpty())
             mainuiClass->setObjectName(QStringLiteral("mainuiClass"));
-        mainuiClass->resize(600, 400);
+        mainuiClass->resize(690, 457);
         verticalLayout = new QVBoxLayout(mainuiClass);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);

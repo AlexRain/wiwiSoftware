@@ -2,6 +2,7 @@
 #include "EventManager.h"
 #include "CustEvent.h"
 #include <QDebug>
+#include <QPainter>
 
 mainui::mainui(QWidget *parent)
 	: QWidget(parent)

@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 		}
 		
 		mainui mainWidget;
-		mainWidget.resize(1280,768);
+		mainWidget.resize(800,600);
 		QDesktopWidget obj;
 		QRect rect = obj.availableGeometry();
 		mainWidget.move((rect.width() - mainWidget.width()) / 2, (rect.height() - mainWidget.height()) / 2);

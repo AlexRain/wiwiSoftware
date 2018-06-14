@@ -26,42 +26,36 @@ void CHttpThreadManager::getData(int nCmd, int nWidgetId, QString strFuncName, Q
 	param.strWidgetId = nWidgetId;
 	param.strParam = strParam;
 
-	TaskManager::Instance().InsetTask(param);
+	TaskManager::Instance().mutex.lock();
+	TaskManager::Instance().m_listTask.push_back(param);
+	TaskManager::Instance().mutex.unlock();
 
 	if (m_nThreadCount < 2) //开启常驻线程
 	{
-		QThread *pThread = new QThread;
 		CRequestThread *pObj = new CRequestThread;
 		pObj->m_bAlwaysOn = true;
-		pObj->moveToThread(pThread);
-		pThread->start();
+		pObj->start();
 		m_nThreadCount++;
 
 		connect(pObj, SIGNAL(GetDataCallback(int, int, QString, QString)),
 			this, SIGNAL(GetDataCallback(int, int, QString, QString)));
 
-		connect(pThread, &QThread::started, pObj, &CRequestThread::getData);
-		connect(pThread, SIGNAL(finished()), this, SLOT(slot_threadFinish()));
-		connect(pThread, SIGNAL(finished()), pObj, SLOT(deleteLater()));
-		connect(pThread, SIGNAL(finished()), pThread, SLOT(deleteLater()));
+		connect(pObj, SIGNAL(finished()), this, SLOT(slot_threadFinish()));
+		connect(pObj, SIGNAL(finished()), pObj, SLOT(deleteLater()));
 	}
 
 	if ((TaskManager::Instance().m_listTask.size() > 2) && (m_nThreadOn < MAX_THREADON_NUM)) //开启临时线程
 	{
-        QThread *pThread = new QThread;
 		CRequestThread *pObj = new CRequestThread;
 		pObj->m_bAlwaysOn = false;
-		pObj->moveToThread(pThread);
-		pThread->start();
-        m_nThreadCount++;
+		pObj->start();
+		m_nThreadOn++;
 
 		connect(pObj, SIGNAL(GetDataCallback(int, int, QString, QString)),
 			this, SIGNAL(GetDataCallback(int, int, QString, QString)));
 
-		connect(pThread, &QThread::started, pObj, &CRequestThread::getData);
-		connect(pThread, SIGNAL(finished()), this, SLOT(slot_threadFinish()));
-		connect(pThread, SIGNAL(finished()), pObj, SLOT(deleteLater()));
-		connect(pThread, SIGNAL(finished()), pThread, SLOT(deleteLater()));
+		connect(pObj, SIGNAL(finished()), this, SLOT(slot_threadFinish()));
+		connect(pObj, SIGNAL(finished()), pObj, SLOT(deleteLater()));
 	}
 
     qDebug() << QString::fromLocal8Bit("当前线程数量：") << m_nThreadCount;
@@ -70,5 +64,5 @@ void CHttpThreadManager::getData(int nCmd, int nWidgetId, QString strFuncName, Q
 void CHttpThreadManager::slot_threadFinish()
 {
 	m_nThreadCount--;
-    qDebug() << "One Thread Finished";
+    qDebug() << "One Thread Finished....";
 }
