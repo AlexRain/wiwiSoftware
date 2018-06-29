@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
@@ -27,6 +28,8 @@ class Ui_mainuiClass
 public:
     QVBoxLayout *verticalLayout;
     QWidget *widget;
+    QVBoxLayout *verticalLayout_2;
+    QLabel *label;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer;
     QPushButton *pushButton_request;
@@ -47,6 +50,17 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(widget->sizePolicy().hasHeightForWidth());
         widget->setSizePolicy(sizePolicy);
+        verticalLayout_2 = new QVBoxLayout(widget);
+        verticalLayout_2->setSpacing(0);
+        verticalLayout_2->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
+        label = new QLabel(widget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_2->addWidget(label);
+
 
         verticalLayout->addWidget(widget);
 
@@ -75,6 +89,7 @@ public:
     void retranslateUi(QWidget *mainuiClass)
     {
         mainuiClass->setWindowTitle(QApplication::translate("mainuiClass", "mainui", Q_NULLPTR));
+        label->setText(QString());
         pushButton_request->setText(QApplication::translate("mainuiClass", "Request", Q_NULLPTR));
     } // retranslateUi
 

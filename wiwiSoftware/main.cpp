@@ -3,6 +3,7 @@
 #include "Cloginui.h"
 #include "commmon.h"
 #include <QDesktopWidget>
+#include "playerWidget.h"
 
 int main(int argc, char *argv[])
 {
