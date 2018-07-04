@@ -12,6 +12,12 @@ public:
 	AvControlWidget(QWidget *parent = 0);
 	~AvControlWidget();
 
+protected:
+    bool eventFilter(QObject *obj,QEvent *event);
+
+private:
+    void setSliderStyle(int nHandleWidth,int nGrooveWidth);
+
 private:
 	void initStyle();
 

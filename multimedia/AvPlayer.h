@@ -5,6 +5,8 @@
 #include "multimedia_global.h"
 #include "QtAV/VideoOutput.h"
 #include "QtAV/AVPlayer.h"
+#include <QTimer>
+#include <QEvent>
 using namespace QtAV;
 
 class QSlider;
@@ -29,18 +31,30 @@ private Q_SLOTS:
 	void updateSlider(qint64 value);
 	void updateSlider();
 	void updateSliderUnit();
-
+    void slotTimeOut();
+    void setFullScreen(bool bFull);
+private:
+    void initUi();
 protected:
 	void enterEvent(QEvent *event);
 	void leaveEvent(QEvent *event);
 	void mouseMoveEvent(QMouseEvent *event);
-	void mousePressEvent(QMouseEvent *event);
+	void mouseReleaseEvent(QMouseEvent *event);
+    void mouseDoubleClickEvent(QMouseEvent *event);
+    void resizeEvent(QResizeEvent *event);
+    void showEvent(QShowEvent *event);
 
 private:
 	QtAV::VideoOutput *m_vo;
 	QtAV::AVPlayer *m_player;
 	AvControlWidget *m_pControl;
+
 	int m_unit;
+
+    QTimer m_timer;
+
+    bool m_bPaused;
+    bool m_bFullScreen;
 	
 };
 
