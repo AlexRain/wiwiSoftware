@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'AvControlWidget.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.1
+** Created by: Qt User Interface Compiler version 5.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -43,12 +43,12 @@ public:
     {
         if (AvControlWidget->objectName().isEmpty())
             AvControlWidget->setObjectName(QStringLiteral("AvControlWidget"));
-        AvControlWidget->resize(681, 57);
+        AvControlWidget->resize(681, 64);
         verticalLayout = new QVBoxLayout(AvControlWidget);
-        verticalLayout->setSpacing(6);
+        verticalLayout->setSpacing(0);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        verticalLayout->setContentsMargins(0, 0, 0, 10);
         slider = new QSlider(AvControlWidget);
         slider->setObjectName(QStringLiteral("slider"));
         slider->setOrientation(Qt::Horizontal);

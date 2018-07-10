@@ -28,11 +28,11 @@ void mainui::updateText(QString strText)
 void mainui::on_pushButton_request_clicked()
 {
     //m_logic.getWebContent(eMainWidget, "updateText", "");
-	AvPlayer *player = new AvPlayer(this);
-	//player->setFixedSize(800, 600);
-	//player->show();
-	ui.label->hide();
-	ui.verticalLayout_2->addWidget(player);
+	AvPlayer *player = new AvPlayer;
+	player->setFixedSize(800, 600);
+	player->show();
+	//ui.label->hide();
+	//ui.verticalLayout_2->addWidget(player);
 }
 
 bool mainui::event(QEvent *event)
