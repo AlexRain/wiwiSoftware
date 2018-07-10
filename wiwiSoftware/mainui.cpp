@@ -11,7 +11,7 @@ mainui::mainui(QWidget *parent)
 	ui.setupUi(this);
 
     event_helper.RegistWidgetAndFunc(eMainWidget, this);
-    //m_logic.getWebContent(eMainWidget, "updateText", "");
+    m_logic.getWebContent(eMainWidget, "updateText", "");
 	registEvent();
 }
 
@@ -22,7 +22,7 @@ mainui::~mainui()
 
 void mainui::updateText(QString strText)
 {
-    qDebug() << "WebContent:" << strText;
+    qWarning() << "WebContent:" << strText;
 }
 
 void mainui::on_pushButton_request_clicked()

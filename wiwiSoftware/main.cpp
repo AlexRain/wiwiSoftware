@@ -4,10 +4,15 @@
 #include "commmon.h"
 #include <QDesktopWidget>
 #include "playerWidget.h"
+#include "CLog.h"
 
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
+
+	// »’÷æ
+	CLog log;
+	log.Install();
 
 	int nExitCode = 0;
 	do 

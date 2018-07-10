@@ -69,11 +69,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CLog.cpp" />
     <ClCompile Include="commmon.cpp" />
     <ClCompile Include="CustEvent.cpp" />
     <ClCompile Include="tool.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CLog.h" />
     <ClInclude Include="commmon.h" />
     <ClInclude Include="CustEvent.h" />
     <ClInclude Include="tool.h" />

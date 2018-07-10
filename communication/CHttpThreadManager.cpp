@@ -58,11 +58,11 @@ void CHttpThreadManager::getData(int nCmd, int nWidgetId, QString strFuncName, Q
 		connect(pObj, SIGNAL(finished()), pObj, SLOT(deleteLater()));
 	}
 
-    qDebug() << QString::fromLocal8Bit("当前线程数量：") << m_nThreadCount;
+    qWarning() << QString::fromLocal8Bit("当前线程数量：") << m_nThreadCount;
 }
 
 void CHttpThreadManager::slot_threadFinish()
 {
 	m_nThreadCount--;
-    qDebug() << "One Thread Finished....";
+	qWarning() << "One Thread Finished....";
 }
